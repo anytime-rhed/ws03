@@ -1,0 +1,16 @@
+{
+    "name": "anytime-rhed/ws03",
+    "description": "Job Board Application",
+    "authors": [
+        {
+            "name": "Roldan Salac",
+            "email": "salacroldan@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Framework\\": "Framework/",
+            "App\\": "App/"
+        }
+    }
+}
