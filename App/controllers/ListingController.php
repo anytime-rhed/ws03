@@ -234,7 +234,22 @@ class ListingController
             exit;
         } else {
             // Submit to DB
+            $updateFields = [];
 
+            foreach (array_keys($updateValues) as $field) {
+                $updateFields[] = "{$field} = :{$field}";
+            }
+            $updateFields = implode(', ', $updateFields);
+
+            $updateQuery = "UPDATE listings SET $updateFields WHERE id = :id";
+
+            $updateValues['id'] = $id;
+
+            $this->db->query($updateQuery, $updateValues);
+
+            Session::setFlashMessage('success_message', 'Listing updated successfully');
+
+            redirect('/listings/' . $id);
         }
     }
 }
