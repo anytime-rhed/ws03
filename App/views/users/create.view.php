@@ -1,5 +1,5 @@
-<?= loadPartial('head'); ?>
-<?= loadPartial('navbar'); ?>
+<?php loadPartial('head'); ?>
+<?php loadPartial('navbar'); ?>
 
 <!-- Registration Form Box -->
     <div class="flex justify-center items-center mt-20">
@@ -73,4 +73,4 @@
       </div>
     </div>
 
-<?= loadPartial('footer'); ?>
+<?php loadPartial('footer'); ?>

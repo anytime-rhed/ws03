@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use Framework\Database;
 use Framework\Validation;
+use Framework\Session;
 
 
 class UserController
@@ -80,5 +81,58 @@ class UserController
             ]);
             exit;
         }
+        // Check if email exists
+        $params = [
+            'email' => $email,
+        ];
+
+        $user = $this->db->query('SELECT * FROM users WHERE email = :email', $params)->fetch();
+
+        if ($user) {
+            $errors['email'] = 'The email already exists.';
+            loadView('users/create', [
+                'errors' => $errors
+            ]);
+            exit;
+        }
+
+        // Create user account
+        $params = [
+            'name' => $name,
+            'email' => $email,
+            'city' => $city,
+            'state' => $state,
+            'password' => password_hash($password, PASSWORD_DEFAULT)
+        ];
+
+        $this->db->query('INSERT INTO users (name, email, city, state, password) VALUES (:name, :email, :city, :state, :password)', $params);
+
+         // Get new user id
+        $userid = $this->db->conn->lastInsertId();
+
+        // Set user id in session
+        Session::set('user', [
+            'id' => $userid,
+            'name' => $name,
+            'email' => $email,
+            'city' => $city,
+            'state' => $state,
+        ]);
+
+        redirect('/');
     }
+    /**
+     * Logout a user and kill session
+     * 
+     * @return void
+     */
+    public function logout()
+    {
+        Session::clearAll('user');
+        $params = session_get_cookie_params();
+        setcookie('PHPSESSID', '', time() - 86400, $params['path'], $params['domain']);
+        redirect('/');
+    }
+
 }
+
