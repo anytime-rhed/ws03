@@ -2,30 +2,34 @@
 
 namespace App\Controllers;
 
-
 class ErrorController
 {
     /**
-     * Error 404 - Not Found
+     * error 404 not found 
      * 
      * @return void
      */
-
-    public static function notFound($message = 'Page Not Found')
+    public static function  notFound($mesage = 'Page Not found')
     {
         http_response_code(404);
 
-        loadView('error', ['status' => '404', 'message' => $message]);
+        loadview('error', [
+            'status' => 404,
+            'message' => $mesage
+        ]);
     }
     /**
-     * Error 403 - Unauthorized
+     * error 403 not anauthorized error
+     * 
      * @return void
      */
-
-    public static function unauthorized($message = 'You are not authorized to view this page')
+    public static function unauthorized($mesage = 'You are not authorized to view this page')
     {
         http_response_code(403);
 
-        loadView('error', ['status' => '403', 'message' => $message]);
+        loadview('error', [
+            'status' => 403,
+            'message' => $mesage
+        ]);
     }
 }

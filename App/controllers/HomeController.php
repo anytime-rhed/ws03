@@ -4,14 +4,14 @@ namespace App\Controllers;
 
 use Framework\Database;
 
-class HomeController
-{
+class HomeController{
 
     protected $db;
 
     public function __construct()
     {
         $config = require basePath('config/db.php');
+
         $this->db = new Database($config);
     }
 
@@ -19,7 +19,6 @@ class HomeController
     {
         $listings = $this->db->query('SELECT * FROM listings LIMIT 6')->fetchALL();
 
-
         loadView('home', ['listings' => $listings]);
     }
-}
+} 

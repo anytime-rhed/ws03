@@ -12,6 +12,7 @@ class ListingController
     public function __construct()
     {
         $config = require basePath('config/db.php');
+
         $this->db = new Database($config);
     }
 
@@ -19,25 +20,28 @@ class ListingController
     {
         $listings = $this->db->query('SELECT * FROM listings')->fetchALL();
 
-
         loadView('listings/index', ['listings' => $listings]);
     }
     public function create()
     {
         loadView('listings/create');
     }
-    public function show()
+    public function show($params)
     {
-        $id = $_GET['id'] ?? '';
-        $params = ['id' => $id];
+        $id = $params['id'] ?? '';
+        $params = [
+            'id' => $id
+        ];
 
         $listing = $this->db->query('SELECT * FROM listings WHERE id = :id', $params)->fetch();
 
+        //check if listing exists
         if (!$listing) {
-            loadView('error/404');
-            exit;
+            ErrorController::notFound('Listing not found');
+            return;
         }
-
-        loadView('listings/show', ['listing' => $listing]);
+        loadView('listings/show', [
+            'listing' => $listing
+        ]);
     }
 }
