@@ -15,18 +15,18 @@ class Database
 
         try {
             $this->conn = new PDO($dsn, $config['username'], $config['password'], $options);
-   
         } catch (PDOEXCEPTION $e) {
             throw new Exception('Database failed connection: ' . $e->getMessage());
         }
     }
 
-    public function query($query, $params = []) {
+    public function query($query, $params = [])
+    {
         try {
             $sth = $this->conn->prepare($query);
             // Bind named params
             foreach ($params as $param => $value) {
-                $sth->bindParam(':' . $param, $value);
+                $sth->bindValue(':' . $param, $value);
             }
             $sth->execute();
             return $sth;

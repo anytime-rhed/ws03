@@ -80,21 +80,73 @@ class ListingController
 
         $errors = [];
 
-        foreach ($requiredFields as $field){
-            if(empty($newListingData[$field]) || !Validation::string($newListingData[$field])){
-                $errors[$field] = ucfirst($field) . ' is requires';
+        foreach ($requiredFields as $field) {
+            if (empty($newListingData[$field]) || !Validation::string($newListingData[$field])) {
+                $errors[$field] = ucfirst($field) . ' is required';
             }
         }
 
-        if(!empty($errors)){
+        if (!empty($errors)) {
             //Reload view with errors
             loadView('listings/create', [
                 'errors' => $errors,
                 'listing' => $newListingData
             ]);
-        }else{
+        } else {
             //Submit Data
-            echo "Success";
+
+            $fields = [];
+
+            foreach ($newListingData as $field => $value) {
+                $fields[] = $field;
+            }
+
+            $fields = implode(', ', $fields);
+
+            $value = [];
+
+            foreach ($newListingData as $field => $value) {
+                // Convert empty strings to null
+                if ($value === '') {
+                    $newListingData[$field] = null;
+                }
+                $values[] = ':' . $field;
+            }
+            $values = implode(', ', $values);
+
+            $query = "INSERT INTO listings ({$fields}) VALUES ({$values})";
+
+            $this->db->query($query, $newListingData);
+
+            redirect('/listings');
         }
     }
+/**
+ * Delete a listing
+ * * @param array $params
+ * @return void
+ */
+public function destroy($params)
+{
+    $id = $params['id'] ?? '';
+
+    // Example placeholder logic for your delete action:
+    $params = ['id' => $id];
+
+    // Verify it exists first
+    $listing = $this->db->query('SELECT * FROM listings WHERE id = :id', $params)->fetch();
+
+    if (!$listing) {
+        ErrorController::notFound('Listing not found');
+        return;
+    }
+
+    // Execute delete query
+    $this->db->query('DELETE FROM listings WHERE id = :id', $params);
+
+    //Set flash message
+    $_SESSION['success_message'] = 'Listing deleted successfully';
+
+    redirect('/listings');
+}
 }

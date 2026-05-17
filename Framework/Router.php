@@ -94,42 +94,56 @@ class Router
     {
         $requestMethod = $_SERVER['REQUEST_METHOD'];
 
+        //Check for _method input
+        if ($requestMethod === 'POST' && isset($_POST['_method'])) {
+            $requestMethod = strtoupper($_POST['_method']);
+        }
+
+        //Check for _methodd input
+        if ($requestMethod === 'POST' && isset($_POST['_method'])) {
+            //Override the request method with the value of _method
+            $requestMethod = strtoupper($_POST['_method']);
+        }
+
         foreach ($this->routes as $route) {
-            // split the current URI into segments
+            // Split the current URI into segments
             $uriSegments = explode('/', trim($uri, '/'));
 
-            // split the route  
+            // Split the route
             $routeSegments = explode('/', trim($route['uri'], '/'));
 
             $match = true;
 
-            if (count($uriSegments) === count($routeSegments) && strtoupper($route['method']) === $requestMethod) {
+            if (count($uriSegments) === count($routeSegments) && strtoupper($route['method'] === $requestMethod)) {
                 $params = [];
+
                 $match = true;
 
                 for ($i = 0; $i < count($uriSegments); $i++) {
-                    // if the uri does not match and there is no value between the {id}
-                    if (($routeSegments[$i] !== $uriSegments[$i]) && !preg_match('/\{(.+?)\}/', $routeSegments[$i])) {
+                    //If the uwi fo not match and there is no value between the {id}
+                    if ($routeSegments[$i] !== $uriSegments[$i] && !preg_match('/\{(.+?)\}/', $routeSegments[$i])) {
                         $match = false;
                         break;
                     }
-                    // check for params and add to $params array
+                    // Check for param and add to $params array
                     if (preg_match('/\{(.+?)\}/', $routeSegments[$i], $matches)) {
-                        $params[$matches[1]] = $uriSegments[1];
+                        $params[$matches[1]] = $uriSegments[$i];
                     }
                 }
-                if($match) {
-                    //Extract controller and and controller method
-                    $controller = "App\\Controllers\\{$route['controller']}";
+
+                if ($match) {
+                    // Extract controller and controller method
+                    $controller = 'App\\Controllers\\' . $route['controller'];
                     $controllerMethod = $route['controllerMethod'];
 
-                    //initiate controller class
+                    // Instantiate controller class
                     $controllerInstance = new $controller();
-                    $controllerInstance->$controllerMethod($params);    
+                    $controllerInstance->$controllerMethod($params);
                     return;
                 }
             }
         }
+
 
         ErrorController::notFound();
     }
