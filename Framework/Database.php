@@ -24,10 +24,12 @@ class Database
     {
         try {
             $sth = $this->conn->prepare($query);
+
             // Bind named params
             foreach ($params as $param => $value) {
                 $sth->bindValue(':' . $param, $value);
             }
+
             $sth->execute();
             return $sth;
         } catch (PDOException $e) {
