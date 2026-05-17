@@ -11,7 +11,8 @@ class Authorize
      * 
      * @return bool
      */
-    public function isAuthenticated(){        
+    public function isAuthenticated()
+    {
         return Session::has('user');
     }
 

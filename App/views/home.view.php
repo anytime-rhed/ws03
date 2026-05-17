@@ -1,7 +1,7 @@
-<?= loadPartial('head'); ?>
-<?= loadPartial('navbar'); ?>
-<?= loadPartial('showcase-search'); ?>
-<?= loadPartial('top-banner'); ?>
+<?php loadPartial('head'); ?>
+<?php loadPartial('navbar'); ?>
+<?php loadPartial('showcase-search'); ?>
+<?php loadPartial('top-banner'); ?>
 
 <!-- Job Listings -->
 <section>
@@ -23,10 +23,10 @@
                                 <span
                                     class="text-xs bg-blue-500 text-white rounded-full px-2 py-1 ml-2">Local</span>
                             </li>
-                            <?php if(!empty($listing->tags)) : ?>
-                            <li class="mb-2">
-                                <strong>Tags:</strong> <?= $listing->tags ?>
-                            </li>
+                            <?php if (!empty($listing->tags)) : ?>
+                                <li class="mb-2">
+                                    <strong>Tags:</strong> <?= $listing->tags ?>
+                                </li>
                             <?php endif; ?>
                         </ul>
                         <a href="/listings/<?= $listing->id ?>"
@@ -43,5 +43,5 @@
         </a>
 </section>
 
-<?= loadPartial('bottom-banner'); ?>
-<?= loadPartial('footer'); ?>
+<?php loadPartial('bottom-banner'); ?>
+<?php loadPartial('footer'); ?>

@@ -1,99 +1,50 @@
 /* ============================================================
    JOBSEEK — CUSTOM STYLESHEET
    Pangalan ng Student: ______________________________
-   Theme Name:          ______________________________ // Anong style would best describe this stylesheet
+   Theme Name:          SEVENTEEN (Rose Quartz & Serenity)
    ============================================================ */
 
-/* --- Google Fonts Import (optional) ---
-   Pumunta sa https://fonts.google.com, pumili ng font,
-   i-copy ang @import link, i-paste dito.
-
-   Halimbawa:
-   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-*/
-
+/* --- Google Fonts Import (optional) --- */
 @import url('https://api.fontshare.com/v2/css?f[]=clash-display@600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap');
 
 
 /* ----------------------------------------------------------------
    SECTION 1: MGA KULAY (Colors)
-   ----------------------------------------------------------------
-   Palitan ang bawat hex code ng kulay na gusto mo.
-   Tip: https://coolors.co — para pumili ng color palette
-        https://htmlcolorcodes.com — para makita ang hex codes
    ---------------------------------------------------------------- */
 
 :root {
-  --color-header: #314E6E;
-  /* Header at navigation bar */
-  --color-accent: #6EA8FE;
-  /* "Post a Job" button at mga highlight */
-  --color-page-bg: #DCE6F2;
-  /* Background ng buong page */
-  --color-card-bg: #F8FAFC;
-  /* Background ng mga card/box */
-  --color-heading: #1E293B;
-  /* Kulay ng mga title at heading */
-  --color-body-text: #475569;
-  /* Regular na body text */
-  --color-link: #ffffff;
-  /* Mga clickable na links */
-  --color-tag-bg: #BFDBFE;
-  /* Background ng mga tag/badge */
-  --color-tag-text: #1E3A8A;
-  /* Text ng mga tag/badge */
-  --color-footer: #314E6E;
-  /* Footer background */
-  --showcase-overlay: rgba(30, 41, 59, 0.3);
-  /* Hero banner overlay
-     0.0 = transparent
-     0.9 = halos itim */
+  --color-header: #91A3B0;       /* Serenity Blue for navigation */
+  --color-accent: #F7CAC9;       /* Rose Quartz for "Post a Job" & highlights */
+  --color-page-bg: #EAF0F6;      /* Very soft Serenity-tinted page background */
+  --color-card-bg: #FFFFFF;      /* Clean white for content cards */
+  --color-heading: #5B6D80;      /* Deep Serenity tone for titles */
+  --color-body-text: #6B7280;    /* Soft gray for readable body copy */
+  --color-link: #ffffff;         /* Clickable links white balance */
+  --color-tag-bg: #FCECEB;       /* Pale Rose Quartz tint for background badges */
+  --color-tag-text: #D19492;     /* Deeper Rose Quartz for badge text */
+  --color-footer: #91A3B0;       /* Serenity Blue footer background */
+  --showcase-overlay: rgba(145, 163, 176, 0.4); /* Serenity-themed hero banner overlay */
 }
 
 
 /* ----------------------------------------------------------------
    SECTION 2: MGA FONT (Typography)
-   ----------------------------------------------------------------
-   Palitan ng font name na gusto mo.
-   Kung gagamit ng Google Font, i-import muna sa taas ng file.
-
-   Halimbawa ng built-in fonts (hindi na kailangan ng import):
-     'Georgia', serif
-     'Arial', sans-serif
-     'Verdana', sans-serif
-     'Times New Roman', serif
-     'Courier New', monospace
    ---------------------------------------------------------------- */
-
 
 :root {
   --font-heading: 'Clash Display', sans-serif;
-  /* Font para sa mga title at heading */
   --font-body: 'Archivo', sans-serif;
-  /* Font para sa regular na text */
 }
 
 
 /* ----------------------------------------------------------------
    SECTION 3: HUGIS AT ESTILO (Shape & Style)
-   ----------------------------------------------------------------
-   --border-radius:
-     0px      = matuwid / sharp corners
-     4px      = konting rounding
-     8px      = medyo rounded
-     16px     = malakas na rounding
-     9999px   = pill shape / fully round
-
-   --card-shadow:
-     none                           = walang shadow
-     0 2px 8px rgba(0,0,0,0.08)    = mahinang shadow
-     0 4px 16px rgba(0,0,0,0.20)   = malakas na shadow
    ---------------------------------------------------------------- */
 
 :root {
   --border-radius: 8px;
-  --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --card-shadow: 0 4px 12px rgba(145, 163, 176, 0.15); /* Tinted subtle shadow */
 }
 
 
@@ -101,7 +52,6 @@
 
 /* ================================================================
    === HUWAG I-EDIT ANG SECTION NA ITO (unless gusto mong advanced!) ===
-   === Ito ang code na gumagamit ng iyong mga variables sa itaas.  ===
    ================================================================ */
 
 body {
@@ -143,14 +93,14 @@ header {
 
 .hover\:bg-yellow-600:hover {
   background-color: var(--color-accent) !important;
-  filter: brightness(0.88);
+  filter: brightness(0.92);
 }
 
 .bg-yellow-500,
 .bg-blue-500,
 .bg-green-500 {
   background-color: var(--color-accent) !important;
-  color: #000000 !important;
+  color: #FFFFFF !important; /* White text looks cleaner on Rose Quartz */
 }
 
 .bg-white {
@@ -196,17 +146,16 @@ footer,
 
 .bg-red-500,
 .bg-white h2 {
-  color: #000000 !important;
+  color: var(--color-heading) !important;
 }
 
 .copy-right,
 .bg-white a.block {
-  background-color: #CFD8DC !important;
+  background-color: #E2E8F0 !important;
 }
 
 .h2-style {
   font-size: 3.5rem !important;
-  /* Massive size like a hero H1 */
   font-weight: 900 !important;
 }
 
@@ -217,7 +166,6 @@ footer,
 a.btn-primary-action {
   background-color: var(--color-header) !important;
   color: #FFFFFF !important;
-  /* Force text to white */
   display: block !important;
   width: fit-content !important;
   margin-left: auto !important;
@@ -229,35 +177,13 @@ a.btn-primary-action {
   padding-bottom: 1rem !important;
 }
 
-/* ----------------------------------------------------------------
-   ADVANCED ZONE — Para sa gustong mag-explore pa!
-   ----------------------------------------------------------------
-   Alisin ang mga comment blocks para i-activate ang isang rule.
-   ---------------------------------------------------------------- */
-
-/* Hover effect sa mga link */
-/* a:hover {
-  text-decoration: underline;
-  opacity: 0.85;
-} */
-
-/* Kulay ng input fields */
-/* input, select, textarea {
-  border-color: var(--color-link) !important;
-  border-radius: var(--border-radius) !important;
-} */
-
-/* Kulay ng success badge */
-/* .bg-green-100 { background-color: #d1fae5 !important; }
-   .text-green-800 { color: #065f46 !important; } */
-
 /* --- MODERN FOOTER STYLES --- */
 .modern-footer {
   background-color: var(--color-footer) !important;
   padding-top: 5rem !important;
   padding-bottom: 2rem !important;
   margin-top: 5rem !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
 }
 
 .footer-container {
@@ -283,7 +209,7 @@ a.btn-primary-action {
 }
 
 .footer-logo svg {
-  stroke: #f0fdfa;
+  stroke: #ffffff;
 }
 
 .footer-logo h3 {
@@ -296,7 +222,7 @@ a.btn-primary-action {
 
 .footer-brand p {
   font-family: var(--font-body) !important;
-  color: #cbd5e1 !important;
+  color: #f1f5f9 !important;
   font-size: 0.875rem;
   line-height: 1.6;
   margin-bottom: 1.5rem;
@@ -314,7 +240,7 @@ a.btn-primary-action {
   width: 36px;
   height: 36px;
   border-radius: 50% !important;
-  background-color: rgba(255, 255, 255, 0.1) !important;
+  background-color: rgba(255, 255, 255, 0.15) !important;
   color: #ffffff !important;
   transition: background-color 0.3s ease;
   text-decoration: none !important;
@@ -349,7 +275,7 @@ a.btn-primary-action {
 
 .footer-links a {
   font-family: var(--font-body) !important;
-  color: #cbd5e1 !important;
+  color: #f1f5f9 !important;
   font-size: 0.875rem;
   text-decoration: none !important;
   transition: color 0.3s ease, transform 0.3s ease;
@@ -367,7 +293,7 @@ a.btn-primary-action {
 
 .footer-newsletter p {
   font-family: var(--font-body) !important;
-  color: #cbd5e1 !important;
+  color: #f1f5f9 !important;
   font-size: 0.875rem;
   margin-bottom: 1rem;
 }
@@ -382,8 +308,8 @@ a.btn-primary-action {
   width: 100%;
   padding: 0.75rem 1rem;
   border-radius: var(--border-radius) !important;
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   color: #ffffff;
   font-family: var(--font-body) !important;
   box-sizing: border-box;
@@ -409,11 +335,11 @@ a.btn-primary-action {
 }
 
 .footer-newsletter button:hover {
-  filter: brightness(0.9);
+  filter: brightness(0.95);
 }
 
 .footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
   padding: 1.5rem 0;
 }
 
@@ -430,7 +356,7 @@ a.btn-primary-action {
 
 .footer-bottom-container p {
   font-family: var(--font-body) !important;
-  color: #94a3b8 !important;
+  color: #f1f5f9 !important;
   font-size: 0.75rem;
   margin: 0;
 }
@@ -442,7 +368,7 @@ a.btn-primary-action {
 
 .footer-bottom-links a {
   font-family: var(--font-body) !important;
-  color: #94a3b8 !important;
+  color: #f1f5f9 !important;
   font-size: 0.75rem;
   text-decoration: none !important;
   transition: color 0.3s ease;
@@ -452,12 +378,12 @@ a.btn-primary-action {
   color: #ffffff !important;
 }
 
-/* Specific override for job titles to ensure they are #1E293B */
+/* Specific override for job titles */
 .rounded-lg h2.text-xl {
-  color: #1E293B !important;
+  color: var(--color-heading) !important;
 }
 
 /* Remote and Local tags background override */
 span.bg-blue-500.rounded-full {
-  background-color: #2563EB !important;
+  background-color: #7A8E9E !important; /* Balanced darker Serenity shade for contrast */
 }

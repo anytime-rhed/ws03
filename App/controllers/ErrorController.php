@@ -5,31 +5,32 @@ namespace App\Controllers;
 class ErrorController
 {
     /**
-     * error 404 not found 
+     * Error 404 not found
      * 
      * @return void
      */
-    public static function  notFound($mesage = 'Page Not found')
+    public static function notFound($message = 'Page not found.')
     {
         http_response_code(404);
 
-        loadview('error', [
-            'status' => 404,
-            'message' => $mesage
-        ]);
+        loadView('error', [
+            'status' => '404',
+            'message' => $message
+            ]);
     }
+
     /**
-     * error 403 not anauthorized error
+     * Error 403 not authorized error
      * 
      * @return void
      */
-    public static function unauthorized($mesage = 'You are not authorized to view this page')
+    public static function unauthorized($message = 'Access denied.')
     {
         http_response_code(403);
 
-        loadview('error', [
-            'status' => 403,
-            'message' => $mesage
-        ]);
+        loadView('error', [
+            'status' => '403',
+            'message' => $message
+            ]);
     }
 }
